@@ -31,6 +31,7 @@ NAV = [
     ("Mixes", "mixes/"),
     ("Events", "events/"),
     ("About", "about/"),
+    ("Press", "press/"),
 ]
 
 EXT = 'target="_blank" rel="noopener"'
@@ -356,6 +357,28 @@ def social_feed(c: dict) -> str:
 </section>"""
 
 
+def mixes_feature(c: dict, base: str) -> str:
+    if not c["mixes"]:
+        return ""
+    mixcloud = next((s["url"] for s in c["socials"] if s["label"] == "Mixcloud"), "")
+    players = "".join(mix_card(m) for m in c["mixes"][:2])
+    return f"""<section class="section section-alt">
+  <div class="wrap mixes-feature">
+    <div class="reveal">
+      <p class="eyebrow">Mixes</p>
+      <h2 class="display">Hear the <span class="gold-text">sound</span></h2>
+      <p class="body-copy">{e(c['mixes_intro'])} Press play and hear what your guests will be dancing to.</p>
+      {tags(c['genres'])}
+      <div class="actions">
+        <a class="btn btn-gold" href="{base}mixes/">All mixes</a>
+        <a class="btn btn-ghost" href="{e(mixcloud)}" {EXT}>Follow on Mixcloud</a>
+      </div>
+    </div>
+    <div class="mix-list">{players}</div>
+  </div>
+</section>"""
+
+
 def request_band(c: dict) -> str:
     return f"""<section class="band band-gold">
   <div class="wrap band-inner reveal">
@@ -494,6 +517,7 @@ def home(c: dict) -> str:
   </div>
 </section>
 
+{mixes_feature(c, "")}
 {booth_promo(c, "", 'Add a photo booth.<br><span class="gold-text">Make it an experience.</span>', c['photobooth']['intro'])}
 {dates_html}
 {social_feed(c)}
@@ -702,7 +726,7 @@ def about(c: dict) -> str:
       {long_bio}
       <div class="actions">
         <a class="btn btn-gold" href="../book/">Check your date</a>
-        <a class="btn btn-ghost" href="{e(ct['instagram_url'])}" {EXT}>Follow {e(ct['instagram_handle'])}</a>
+        <a class="btn btn-ghost" href="../press/">Press kit</a>
       </div>
     </div>
     <div class="about-art reveal">
@@ -768,6 +792,123 @@ def book(c: dict) -> str:
                 base="../", path="book/", body=body)
 
 
+def press(c: dict) -> str:
+    site, bio, ct, pr = c["site"], c["bio"], c["contact"], c["press"]
+    logo = pr["logos"][0]["src"] if pr["logos"] else site["logo"]
+    long_bio = "\n\n".join(bio["long"])
+    logos = "".join(
+        f'<figure class="asset-card"><div class="asset-img"><img src="../{e(l["src"])}" alt="{e(l["label"])}" loading="lazy"></div>'
+        f'<figcaption><span><strong>{e(l["label"])}</strong><span class="muted small">{e(l.get("meta", ""))}</span></span>'
+        f'<a class="btn btn-ghost btn-sm no-print" href="../{e(l["src"])}" download>Download</a></figcaption></figure>'
+        for l in pr["logos"]
+    )
+    photos = "".join(
+        f'<figure class="asset-card"><div class="asset-img asset-photo"><img src="../{e(ph["src"])}" alt="{e(ph["alt"])}" loading="lazy"></div>'
+        f'<figcaption><span class="muted small">{e(ph.get("credit", ""))}</span>'
+        f'<a class="btn btn-ghost btn-sm no-print" href="../{e(ph["src"])}" download>Download</a></figcaption></figure>'
+        for ph in pr["photos"]
+    )
+    photos_html = f"""<section class="section">
+  <div class="wrap">
+    {section_head("Photos", "Press photos", "High resolution. Credit the photographer when you use them.")}
+    <div class="asset-grid">{photos}</div>
+  </div>
+</section>""" if photos else ""
+    mix_rows = "".join(
+        f'<li><a href="{e(m["url"])}" {EXT}>{e(m["title"])}</a> <span class="muted">{e(m["description"])}</span></li>'
+        for m in c["mixes"]
+    )
+    brings = "".join(f"<li>{e(x)}</li>" for x in pr["brings"])
+    venue = (
+        f'<div class="reveal"><h2 class="display">Venue needs</h2><ul class="checklist">{"".join(f"<li>{e(x)}</li>" for x in pr["venue_needs"])}</ul></div>'
+        if pr["venue_needs"] else ""
+    )
+    body = f"""<section class="page-hero press-hero">
+  <div class="wrap press-hero-grid">
+    <div>
+      <p class="eyebrow">Electronic press kit</p>
+      <h1 class="display">{e(site['name'])}</h1>
+      <p class="lede">{e(site['tagline'])} {e(pr['intro'])}</p>
+      <div class="actions no-print">
+        <button class="btn btn-gold" type="button" data-print>Save as PDF</button>
+        <a class="btn btn-ghost" href="../{e(logo)}" download>Download logo</a>
+        <a class="btn btn-ghost" href="../book/">Book a date</a>
+      </div>
+    </div>
+    <img class="press-logo" src="../{e(site['logo'])}" alt="{e(site['name'])} logo" width="900" height="931">
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="wrap">
+    <dl class="facts reveal">
+      <div><dt>Name</dt><dd>{e(site['full_name'])}</dd></div>
+      <div><dt>Based in</dt><dd>{e(site['location'])}</dd></div>
+      <div><dt>Mixing since</dt><dd>{e(site['since'])}</dd></div>
+      <div><dt>Style</dt><dd>Open format DJ + MC</dd></div>
+    </dl>
+    <div class="split press-split">
+      <div class="reveal"><p class="eyebrow">Sound</p>{tags(c['genres'])}</div>
+      <div class="reveal"><p class="eyebrow">Books</p>{tags(pr['focus'])}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap bios">
+    <div class="bio-block reveal">
+      <div class="bio-head"><h2 class="display">Short bio</h2><button class="btn btn-ghost btn-sm no-print" type="button" data-copy="bio-short">Copy</button></div>
+      <p id="bio-short" class="body-copy">{e(bio['short'])}</p>
+    </div>
+    <div class="bio-block reveal">
+      <div class="bio-head"><h2 class="display">Full bio</h2><button class="btn btn-ghost btn-sm no-print" type="button" data-copy="bio-long">Copy</button></div>
+      <div id="bio-long" class="body-copy prewrap">{e(long_bio)}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    {section_head("Brand", "Logos", "Use these on flyers, programs and event pages. Keep them unaltered.")}
+    <div class="asset-grid">{logos}</div>
+  </div>
+</section>
+{photos_html}
+<section class="section section-alt">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2 class="display">Mixes</h2>
+      <ul class="plain">{mix_rows}</ul>
+    </div>
+    <div class="reveal">
+      <h2 class="display">DJ Play brings</h2>
+      <ul class="checklist">{brings}</ul>
+    </div>
+    {venue}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2 class="display">Contact</h2>
+      <ul class="contact-list">
+        <li><span class="contact-label">Booking</span><a href="tel:{e(ct['phone_href'])}">{e(ct['phone'])}</a></li>
+        <li><span class="contact-label">Email</span><a href="mailto:{e(ct['email'])}">{e(ct['email'])}</a></li>
+        <li><span class="contact-label">Website</span><a href="{e(site['url'])}">{e(site['url'].split('://')[-1].rstrip('/'))}</a></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <h2 class="display">Socials</h2>
+      <ul class="contact-list">{"".join(f'<li><span class="contact-label">{e(s["label"])}</span><a href="{e(s["url"])}" {EXT}>{e(s["url"].split("://")[-1].removeprefix("www.").rstrip("/"))}</a></li>' for s in c["socials"])}</ul>
+    </div>
+  </div>
+</section>"""
+    return page(c, title=f"Press kit | {site['name']}",
+                description=f"Press kit for {site['name']}: bios, logos, mixes and booking contacts.",
+                base="../", path="press/", body=body)
+
+
 def not_found(c: dict) -> str:
     # GitHub Pages serves this for any missing path at any depth, so links use the absolute site URL.
     base = c["site"]["url"]
@@ -788,6 +929,7 @@ PAGES = {
     "mixes/index.html": mixes,
     "events/index.html": events,
     "about/index.html": about,
+    "press/index.html": press,
     "book/index.html": book,
     "404.html": not_found,
 }

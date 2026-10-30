@@ -54,6 +54,23 @@ document.documentElement.classList.add("js");
     if (row.dataset.date < today) row.remove();
   });
 
+  // ------------------------------------------------------ press kit helpers
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const target = document.getElementById(btn.dataset.copy);
+      if (!target) return;
+      try {
+        await navigator.clipboard.writeText(target.innerText.trim());
+        const label = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(() => (btn.textContent = label), 1500);
+      } catch {
+        window.getSelection().selectAllChildren(target);
+      }
+    });
+  });
+  document.querySelectorAll("[data-print]").forEach((btn) => btn.addEventListener("click", () => window.print()));
+
   // --------------------------------------------------------- booking form
   const form = document.querySelector(".booking-form");
   if (!form) return;

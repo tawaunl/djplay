@@ -8,7 +8,7 @@ Booking site for DJ Play (Dawaun Lucas), a wedding and corporate event DJ and MC
 
 | Page | Path | What's on it |
 | --- | --- | --- |
-| Home | `/` | Hero, weddings and corporate features, why DJ Play, about, photo booth promo, upcoming dates, Instagram feed |
+| Home | `/` | Hero, weddings and corporate features, why DJ Play, about, featured mixes, photo booth promo, upcoming dates, Instagram feed |
 | Weddings | `/weddings/` | The day timeline, wedding packages, planning process, photo booth, FAQ |
 | Corporate | `/corporate/` | What you get, event types, recommended package, branded photo booth, FAQ |
 | Packages | `/packages/` | Wedding packages, event packages, add-ons, FAQ |
@@ -16,6 +16,7 @@ Booking site for DJ Play (Dawaun Lucas), a wedding and corporate event DJ and MC
 | Mixes | `/mixes/` | Mixcloud players and song requests |
 | Events | `/events/` | Upcoming public dates and the Instagram feed |
 | About | `/about/` | Bio, stats, sound, service area |
+| Press kit | `/press/` | Copyable bios, quick facts, logo downloads, mixes, gear, contacts. "Save as PDF" prints a 2-page one-sheet |
 | Book | `/book/` | Booking request form for DJ, photo booth, or both |
 
 ## Edit content
@@ -25,7 +26,8 @@ All copy lives in [`content.json`](content.json). Edit it, then rebuild.
 - **Upcoming events:** add entries to `dates` (format in `_dates_help`). Past dates hide automatically, and the site rebuilds daily.
 - **Instagram feed:** for a live feed, create a free feed at [behold.so](https://behold.so), connect @djplay310, and paste the feed ID into `social_feed.behold_feed_id`. Or list post URLs in `social_feed.instagram_posts`. With both empty, a Follow card shows.
 - **Booking form:** with `booking.form_endpoint` empty, the form opens the visitor's email app with the request filled in. To receive requests straight from the site, create a free form at [formspree.io](https://formspree.io) and paste its URL there.
-- **Mixes:** add to `mixes`. `embed` takes a Mixcloud or SoundCloud player URL.
+- **Mixes:** add to `mixes`. `embed` takes a Mixcloud or SoundCloud player URL. The first two also show on the home page.
+- **Press kit:** add press photos to `press.photos` (files in `static/assets/img/press/`) and venue requirements to `press.venue_needs`. Both sections stay hidden while empty.
 - **Packages and prices:** `weddings.packages`, `packages` and `addons`.
 
 Booking links can prefill the form, for example `book/?type=Wedding&package=Signature%20(wedding)` or `book/?service=booth&booth=Glam%20Booth`.

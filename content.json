@@ -174,6 +174,26 @@
     }
   ],
 
+  "press": {
+    "intro": "Bios, logos, mixes and contacts for planners, venues, promoters and media.",
+    "_photos_help": "Add press photos as { \"src\": \"assets/img/press/photo-1.jpg\", \"alt\": \"DJ Play behind the decks\", \"credit\": \"Photo: Name\" }. Put the files in static/assets/img/press/. The section stays hidden while this list is empty.",
+    "photos": [],
+    "logos": [
+      { "src": "assets/img/press/dj-play-logo.jpg", "label": "Logo, gold on black", "meta": "JPG, 1933 x 2000" }
+    ],
+    "focus": ["Weddings & receptions", "Corporate events & galas", "Private parties", "Church & gospel events", "Community events"],
+    "brings": [
+      "Professional sound system with subwoofer",
+      "Wireless microphones for toasts and speeches",
+      "Dance floor lighting",
+      "Additional PA for large rooms",
+      "Backup gear at every event",
+      "Setup, transport and breakdown"
+    ],
+    "_venue_needs_help": "Optional list of what the venue should provide (power, table size, load-in). Hidden while empty.",
+    "venue_needs": []
+  },
+
   "_dates_help": "Public events for the Events page. Format: { \"date\": \"2026-12-31\", \"time\": \"9pm\", \"title\": \"New Year's Eve\", \"venue\": \"Venue name\", \"city\": \"Long Beach\", \"url\": \"https://tickets...\", \"link_label\": \"Tickets\" }. time, url and link_label are optional. Past dates hide automatically.",
   "dates": [],
 
