@@ -84,7 +84,7 @@ def head(c: dict, title: str, description: str, base: str, path: str) -> str:
 <link rel="apple-touch-icon" href="{base}assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800;1,900&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
 <link rel="stylesheet" href="{base}assets/css/site.css">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{e(title)}">

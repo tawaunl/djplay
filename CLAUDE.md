@@ -38,7 +38,7 @@ python3 -m http.server -d dist 8000   # check http://localhost:8000 at desktop a
 ## Brand
 
 - **Colors:** gold (`#ffd21f` and a gold gradient) on near-black, from the gold play-button logo in `static/assets/img/logo.jpg`.
-- **Type:** Barlow Condensed italic for display, Barlow for body. Play-button triangles as the recurring motif.
+- **Type:** Cormorant Garamond for display (light, elegant serif), Jost for body and small uppercase labels, Great Vibes script for the gold accent words in headings (`.display .gold-text`). Play-button triangles as the recurring motif.
 
 ## Writing style
 
