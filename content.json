@@ -1,0 +1,144 @@
+{
+  "_readme": "All site copy lives here. Edit this file, then run ./build.py. Lists (mixes, packages, booths, faq) can grow or shrink and the pages adjust.",
+
+  "site": {
+    "name": "DJ Play",
+    "full_name": "Dawaun Lucas",
+    "tagline": "Open format DJ and MC. Hip-hop, funk, R&B and everything in between.",
+    "location": "Compton, CA",
+    "region": "Serving Los Angeles, Orange County and beyond",
+    "since": "2008",
+    "url": "https://tawaunl.github.io/djplay/",
+    "logo": "assets/img/logo.jpg",
+    "og_image": "assets/img/og-image.jpg"
+  },
+
+  "contact": {
+    "phone": "(626) 766-0877",
+    "phone_href": "+16267660877",
+    "email": "picturethisphotoboothla@gmail.com",
+    "instagram_handle": "@djplay310",
+    "instagram_url": "https://www.instagram.com/djplay310/",
+    "response_time": "Every inquiry gets a reply within 24 hours."
+  },
+
+  "socials": [
+    { "label": "Instagram", "url": "https://www.instagram.com/djplay310/" },
+    { "label": "Mixcloud", "url": "https://www.mixcloud.com/Djplay310/" },
+    { "label": "Linktree", "url": "https://linktr.ee/Djplay310" }
+  ],
+
+  "song_request_url": "https://app.nosongrequests.com/Djplay",
+
+  "genres": ["Hip-Hop", "Funk", "R&B", "Old School", "Top 40", "Throwbacks", "Gospel", "Open Format"],
+
+  "stats": [
+    { "value": "2008", "label": "Mixing since" },
+    { "value": "15+", "label": "Years of events" },
+    { "value": "DJ + MC", "label": "On the decks and the mic" },
+    { "value": "So-Cal", "label": "LA County and beyond" }
+  ],
+
+  "bio": {
+    "short": "DJ Play (Dawaun Lucas) is an open format DJ and MC from Compton, mixing since 2008. Hip-hop, funk, R&B and today's hits for weddings, parties, church and corporate events across Southern California.",
+    "long": [
+      "DJ Play is Dawaun Lucas, a DJ and MC from Compton who has been mixing since 2008. He's open format, so a set can move from golden-era hip-hop to the funk that came before it, then through R&B, throwbacks and today's hits. Every generation in the room hears a song they know.",
+      "He works the mic as well as the decks. That means smooth transitions, a dance floor that stays full, and an MC who keeps the night moving and on schedule.",
+      "For more than 15 years he has played private parties, weddings, church celebrations, corporate events and community gatherings across Los Angeles. Send your must-play and do-not-play lists ahead of time, and he keeps it clean for church and family events."
+    ]
+  },
+
+  "events": [
+    { "title": "Weddings & Receptions", "text": "Grand entrances, first dances and a packed floor until the last song." },
+    { "title": "Private Parties", "text": "Birthdays, anniversaries, backyard kickbacks and milestone celebrations." },
+    { "title": "Corporate & Galas", "text": "Polished sound and a professional MC for company events and fundraisers." },
+    { "title": "Church & Gospel", "text": "Watch Night, New Year's Eve and church anniversaries, kept clean and family-friendly." },
+    { "title": "Community & Cultural", "text": "Block parties, festivals and neighborhood gatherings." }
+  ],
+
+  "packages_intro": "Every package includes up to 5 hours, professional setup, transport and breakdown, plus a pre-event consultation.",
+
+  "packages": [
+    {
+      "name": "Silver",
+      "guests": "Up to 60 guests",
+      "price": "$599",
+      "items": ["Up to 5 hours", "Pro sound system", "Microphone", "Setup & breakdown"]
+    },
+    {
+      "name": "Gold",
+      "guests": "60 to 100 guests",
+      "price": "$799",
+      "featured": true,
+      "items": ["Up to 5 hours", "Pro sound + subwoofer", "Wireless microphone", "Dance floor lighting", "Setup & breakdown"]
+    },
+    {
+      "name": "Diamond",
+      "guests": "100+ guests",
+      "price": "$1,099",
+      "items": ["Up to 5 hours", "Pro sound + subwoofer", "Two wireless microphones", "Dance floor lighting", "Additional PA if needed", "MC included"]
+    }
+  ],
+
+  "addons": [
+    { "name": "Additional hour", "price": "$125" },
+    { "name": "Dance floor lighting", "price": "$100" },
+    { "name": "Wireless mics (pair)", "price": "$50" }
+  ],
+
+  "packages_note": "Prices are starting rates. Travel fees may apply depending on location. Wedding packages available on request.",
+
+  "faq": [
+    { "q": "What's included?", "a": "Every package includes professional sound, setup, transport and breakdown, plus a pre-event consultation to plan the music and the timeline. Mics, lighting and MC vary by package." },
+    { "q": "Do you travel?", "a": "Yes. DJ Play covers all of Los Angeles County, Orange County and beyond. Travel fees may apply depending on location, and your quote has no hidden costs." },
+    { "q": "Can I send song requests?", "a": "Yes. Send your must-play and do-not-play lists before the event. Guests can also send requests live from their phones." },
+    { "q": "Can you keep the music clean?", "a": "Yes. Music stays clean and family-friendly for church and family events." },
+    { "q": "What if something goes wrong with the equipment?", "a": "DJ Play arrives with professional-grade sound and always brings backup gear." },
+    { "q": "How far ahead should I book?", "a": "4 to 6 weeks ahead is best. Last-minute dates are sometimes available, so ask." },
+    { "q": "How do I lock in my date?", "a": "Send an inquiry and you'll hear back within 24 hours. A signed contract and deposit secure the date." }
+  ],
+
+  "mixes_intro": "Golden-era hip-hop and classic funk, blended the way DJ Play rocks a party.",
+
+  "mixes": [
+    {
+      "title": "Funk You Up",
+      "description": "Funk and golden-era hip-hop, blended for the dance floor.",
+      "embed": "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FDjplay310%2Ffunk-you-up%2F",
+      "url": "https://www.mixcloud.com/Djplay310/funk-you-up/"
+    }
+  ],
+
+  "photobooth": {
+    "name": "Picture This Booth LA",
+    "tagline": "A luxe photo booth rental experience",
+    "intro": "DJ Play is part of Picture This Booth LA, a luxe photo booth rental company serving Los Angeles and Orange County. Book the music and the booth together and your guests go home with prints, GIFs and slow-mo videos.",
+    "url": "https://picturethisboothla.com/",
+    "pricing_url": "https://picturethisboothla.com/pricing",
+    "book_url": "https://picturethisboothla.com/book-a-service",
+    "booths": [
+      { "name": "360 Booth", "text": "Slow-motion video on a rotating platform, ready to share.", "from": "$799" },
+      { "name": "Glam Booth", "text": "Black-and-white portraits with a skin-smoothing filter, plus 4x6 prints.", "from": "$895" },
+      { "name": "Open Air", "text": "Studio-quality prints, photos, video and GIFs.", "from": "$595" },
+      { "name": "Enclosed", "text": "A private, customizable booth with prints and digital copies.", "from": "$995" },
+      { "name": "Magazine", "text": "Guests land on their own custom magazine cover.", "from": "$999" },
+      { "name": "Digital", "text": "Photos, GIFs and boomerangs with your custom branding.", "from": "$399" },
+      { "name": "Vintage", "text": "A classic-style booth with branding, prints and digital downloads.", "from": "" }
+    ],
+    "also": ["AI Photo Booth", "Trading Card Booth", "Holiday Booth", "AI Sketch Generator", "Professional Headshots", "Wedding Booths"]
+  },
+
+  "booking": {
+    "_form_endpoint_help": "Optional. Paste a Formspree (or similar) form URL to receive requests by POST. Leave empty and the form opens the visitor's email app instead.",
+    "form_endpoint": "",
+    "event_types": ["Wedding", "Birthday or private party", "Corporate event", "Church or gospel event", "Community event", "Other"],
+    "package_options": ["Silver", "Gold", "Diamond", "Not sure yet"],
+    "steps": [
+      { "title": "Send an inquiry", "text": "Tell us the date, venue and guest count." },
+      { "title": "Get a quote", "text": "You'll hear back within 24 hours. No hidden costs." },
+      { "title": "Secure the date", "text": "A signed contract and deposit lock it in." }
+    ],
+    "lead_time": "Book 4 to 6 weeks ahead when you can. Last-minute dates are sometimes available, so ask.",
+    "service_area": ["Compton", "Inglewood", "Long Beach", "Carson", "Torrance", "Pasadena", "Hollywood", "Beverly Hills", "San Fernando Valley", "Orange County"]
+  }
+}
