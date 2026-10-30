@@ -128,7 +128,8 @@ def footer(c: dict, base: str) -> str:
     <div>
       <p class="footer-label">Contact</p>
       <ul class="footer-list">
-        <li><a href="tel:{e(ct['phone_href'])}">{e(ct['phone'])}</a></li>
+        <li><a href="tel:{e(ct['phone_href'])}">DJ: {e(ct['phone'])}</a></li>
+        <li><a href="tel:{e(pb['phone_href'])}">Photo booth: {e(pb['phone'])}</a></li>
         <li><a href="mailto:{e(ct['email'])}">Email us</a></li>
         <li><a href="{e(pb['url'])}" {EXT}>{e(pb['name'])}</a></li>
       </ul>
@@ -399,13 +400,14 @@ def request_band(c: dict) -> str:
 </section>"""
 
 
-def cta_band(c: dict, base: str, title: str = 'Lock in <span class="gold-text">your date</span>', **params: str) -> str:
-    ct = c["contact"]
+def cta_band(c: dict, base: str, title: str = 'Lock in <span class="gold-text">your date</span>',
+             booth_phone: bool = False, **params: str) -> str:
+    ct = c["photobooth"] if booth_phone else c["contact"]
     return f"""<section class="section cta">
   <div class="wrap cta-inner reveal">
     <p class="eyebrow">Ready when you are</p>
     <h2 class="display">{title}</h2>
-    <p class="section-sub">{e(ct['response_time'])}</p>
+    <p class="section-sub">{e(c['contact']['response_time'])}</p>
     <div class="actions center-actions">
       <a class="btn btn-gold" href="{book_link(base, **params)}">Check your date</a>
       <a class="btn btn-ghost" href="tel:{e(ct['phone_href'])}">Call {e(ct['phone'])}</a>
@@ -653,7 +655,7 @@ def packages(c: dict) -> str:
 def photo_booth(c: dict) -> str:
     pb = c["photobooth"]
     body = f"""{page_hero(pb["name"], 'Add a photo booth.<br><span class="gold-text">Make it an experience.</span>', e(pb["intro"]),
-        f'<a class="btn btn-gold" href="{book_link("../", service="booth")}">Book a photo booth</a><a class="btn btn-ghost" href="{e(pb["url"])}" {EXT}>Visit {e(pb["name"])}</a>')}
+        f'<a class="btn btn-gold" href="{book_link("../", service="booth")}">Book a photo booth</a><a class="btn btn-ghost" href="tel:{e(pb["phone_href"])}">Call {e(pb["phone"])}</a><a class="btn btn-ghost" href="{e(pb["url"])}" {EXT}>Visit {e(pb["name"])}</a>')}
 <section class="section">
   <div class="wrap">
     {section_head("The booths", "Pick your booth", "Starting prices from " + pb["name"] + ". See their site for full package details.")}
@@ -682,7 +684,7 @@ def photo_booth(c: dict) -> str:
     </a>
   </div>
 </section>
-{cta_band(c, "../", 'Book the booth. <span class="gold-text">Or both.</span>', service="both")}"""
+{cta_band(c, "../", 'Book the booth. <span class="gold-text">Or both.</span>', booth_phone=True, service="both")}"""
     return page(c, title=f"Photo Booth | {c['site']['name']} x {pb['name']}",
                 description=f"Add a photo booth from {pb['name']} to your wedding or corporate event: glam, 360, digital, open air, enclosed and magazine booths.",
                 base="../", path="photo-booth/", body=body)
@@ -785,7 +787,8 @@ def book(c: dict) -> str:
       <ol class="steps">{steps}</ol>
       <p class="fine">{e(b['lead_time'])}</p>
       <div class="contact-card">
-        <a class="contact-row" href="tel:{e(ct['phone_href'])}"><span class="contact-label">Call or text</span><span class="contact-value">{e(ct['phone'])}</span></a>
+        <a class="contact-row" href="tel:{e(ct['phone_href'])}"><span class="contact-label">DJ Play: call or text</span><span class="contact-value">{e(ct['phone'])}</span></a>
+        <a class="contact-row" href="tel:{e(c['photobooth']['phone_href'])}"><span class="contact-label">Photo booth questions</span><span class="contact-value">{e(c['photobooth']['phone'])}</span></a>
         <a class="contact-row" href="mailto:{e(ct['email'])}?subject=DJ%20Play%20booking%20inquiry"><span class="contact-label">Email</span><span class="contact-value">{e(ct['email'])}</span></a>
         <a class="contact-row" href="{e(ct['instagram_url'])}" {EXT}><span class="contact-label">DM on Instagram</span><span class="contact-value">{e(ct['instagram_handle'])}</span></a>
       </div>

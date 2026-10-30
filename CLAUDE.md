@@ -32,7 +32,7 @@ python3 -m http.server -d dist 8000   # check http://localhost:8000 at desktop a
 - **Who:** Dawaun Lucas, DJing as **DJ Play**. From Compton, mixing since 2008, 15+ years of events. Open format, DJ and MC.
 - **Focus:** weddings and corporate events first. Also private parties, church and gospel events, community events.
 - **Business:** part of Picture This Booth LA (picturethisboothla.com), a photo booth rental company. The site promotes the booths and books them through the same form. Packages and prices come from their DJ and wedding DJ pages.
-- **Links:** Instagram [@djplay310](https://www.instagram.com/djplay310/), [Mixcloud](https://www.mixcloud.com/Djplay310/), [Linktree](https://linktr.ee/Djplay310), song requests at app.nosongrequests.com/Djplay. Contact: 626-766-0877, picturethisphotoboothla@gmail.com.
+- **Links:** Instagram [@djplay310](https://www.instagram.com/djplay310/), [Mixcloud](https://www.mixcloud.com/Djplay310/), [Linktree](https://linktr.ee/Djplay310), song requests at app.nosongrequests.com/Djplay. Phones: DJ bookings 310-933-2227 (`contact.phone`), photo booth 626-766-0877 (`photobooth.phone`). Email: picturethisphotoboothla@gmail.com.
 
 ## Brand
 
