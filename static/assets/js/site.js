@@ -48,6 +48,12 @@ document.documentElement.classList.add("js");
     revealEls.forEach((el) => el.classList.add("in"));
   }
 
+  // Hide event dates that have passed since the last build
+  const today = new Date().toISOString().slice(0, 10);
+  document.querySelectorAll(".date-row[data-date]").forEach((row) => {
+    if (row.dataset.date < today) row.remove();
+  });
+
   // --------------------------------------------------------- booking form
   const form = document.querySelector(".booking-form");
   if (!form) return;
@@ -57,12 +63,29 @@ document.documentElement.classList.add("js");
   const dateInput = form.querySelector("[name=event_date]");
   if (dateInput) dateInput.min = new Date().toISOString().slice(0, 10);
 
-  // Prefill from links like book/?package=Gold or book/?booth=1
+  const service = form.querySelector("[name=service]");
+  const [djOption, bothOption, boothOption] = [...service.options].map((o) => o.value);
+
+  // Show the DJ package and photo booth pickers only when they apply
+  const syncService = () => {
+    const wants = { dj: service.value !== boothOption, booth: service.value !== djOption };
+    form.querySelectorAll("[data-for]").forEach((field) => {
+      field.hidden = !wants[field.dataset.for];
+    });
+  };
+  service.addEventListener("change", syncService);
+
+  // Prefill from links like book/?package=Gold, ?type=Wedding, ?service=booth&booth=Glam%20Booth
   const params = new URLSearchParams(window.location.search);
-  const pkg = params.get("package");
-  const pkgSelect = form.querySelector("[name=package]");
-  if (pkg && pkgSelect && [...pkgSelect.options].some((o) => o.value === pkg)) pkgSelect.value = pkg;
-  if (params.get("booth")) form.querySelector("[name=photo_booth]").checked = true;
+  const setIf = (name, value) => {
+    const el = form.querySelector(`[name=${name}]`);
+    if (value && el && [...el.options].some((o) => o.value === value)) el.value = value;
+  };
+  setIf("service", { dj: djOption, both: bothOption, booth: boothOption }[params.get("service")]);
+  setIf("package", params.get("package"));
+  setIf("booth", params.get("booth"));
+  setIf("event_type", params.get("type"));
+  syncService();
 
   const setStatus = (text, kind) => {
     status.textContent = text;
@@ -82,9 +105,9 @@ document.documentElement.classList.add("js");
 
   const summary = (data) => {
     const labels = {
-      name: "Name", email: "Email", phone: "Phone", event_date: "Event date", event_type: "Event type",
-      package: "Package", venue: "Venue / city", guests: "Expected guests", hours: "Time",
-      photo_booth: "Interested in a photo booth", message: "Details",
+      service: "Booking", name: "Name", email: "Email", phone: "Phone", company_name: "Company",
+      event_date: "Event date", event_type: "Event type", package: "DJ package", booth: "Photo booth",
+      guests: "Expected guests", hours: "Time", venue: "Venue / city", message: "Details",
     };
     return Object.entries(labels)
       .filter(([key]) => data.get(key))
@@ -99,9 +122,11 @@ document.documentElement.classList.add("js");
       return;
     }
     const data = new FormData(form);
-    if (data.get("company")) return; // honeypot: bots fill hidden fields
+    if (data.get("website")) return; // honeypot: bots fill hidden fields
+    // Drop pickers that don't apply to what's being booked
+    form.querySelectorAll("[data-for][hidden] select").forEach((el) => data.delete(el.name));
 
-    const subject = `DJ Play booking request: ${data.get("event_type")} on ${data.get("event_date")}`;
+    const subject = `Booking request (${data.get("service")}): ${data.get("event_type")} on ${data.get("event_date")}`;
     const endpoint = form.dataset.endpoint;
 
     if (!endpoint) {
@@ -113,7 +138,7 @@ document.documentElement.classList.add("js");
 
     button.disabled = true;
     setStatus("Sending...");
-    data.delete("company");
+    data.delete("website");
     data.append("_subject", subject);
     try {
       const res = await fetch(endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
@@ -129,6 +154,7 @@ document.documentElement.classList.add("js");
         throw Object.assign(new Error(msg), { fromFormspree: true });
       }
       form.reset();
+      syncService();
       setStatus("Request sent. You'll hear back within 24 hours.", "ok");
     } catch (err) {
       const detail = err && err.fromFormspree && err.message ? `${err.message} ` : "";
