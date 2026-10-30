@@ -1,0 +1,29 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DJ mixer">
+  <defs>
+    <linearGradient id="g-mx" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="300">
+      <stop offset="0" stop-color="#fff27a"/><stop offset=".4" stop-color="#ffd21f"/><stop offset=".75" stop-color="#d9a520"/><stop offset="1" stop-color="#ffe45c"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#g-mx)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="62" y="14" width="276" height="272" rx="16" fill="#121212"/>
+    <!-- four channels: knobs, fader, level meter -->
+    <g id="mx-ch">
+      <circle cx="108" cy="46" r="10"/><path d="M108 46 L101 39"/>
+      <circle cx="108" cy="76" r="10"/><path d="M108 76 L108 66"/>
+      <circle cx="108" cy="106" r="10"/><path d="M108 106 L115 99"/>
+      <path d="M108 140 L108 224" stroke-opacity=".5"/>
+      <rect x="98" y="176" width="20" height="12" rx="3" fill="url(#g-mx)" stroke="none"/>
+    </g>
+    <use href="#mx-ch" x="62"/>
+    <use href="#mx-ch" x="124"/>
+    <use href="#mx-ch" x="186"/>
+    <path d="M150 262 L250 262" stroke-opacity=".5"/>
+    <rect x="186" y="254" width="12" height="16" rx="3" fill="url(#g-mx)" stroke="none"/>
+  </g>
+  <g fill="url(#g-mx)">
+    <g class="meter" style="--d:.55s"><rect x="124" y="208" width="8" height="5" rx="1"/><rect x="124" y="200" width="8" height="5" rx="1"/><rect x="124" y="192" width="8" height="5" rx="1"/><rect x="124" y="184" width="8" height="5" rx="1"/><rect x="124" y="176" width="8" height="5" rx="1"/><rect x="124" y="168" width="8" height="5" rx="1"/><rect x="124" y="160" width="8" height="5" rx="1" fill="#ff6b3d"/></g>
+    <g class="meter" style="--d:.8s"><rect x="186" y="208" width="8" height="5" rx="1"/><rect x="186" y="200" width="8" height="5" rx="1"/><rect x="186" y="192" width="8" height="5" rx="1"/><rect x="186" y="184" width="8" height="5" rx="1"/><rect x="186" y="176" width="8" height="5" rx="1"/><rect x="186" y="168" width="8" height="5" rx="1"/><rect x="186" y="160" width="8" height="5" rx="1" fill="#ff6b3d"/></g>
+    <g class="meter" style="--d:.65s"><rect x="248" y="208" width="8" height="5" rx="1"/><rect x="248" y="200" width="8" height="5" rx="1"/><rect x="248" y="192" width="8" height="5" rx="1"/><rect x="248" y="184" width="8" height="5" rx="1"/><rect x="248" y="176" width="8" height="5" rx="1"/><rect x="248" y="168" width="8" height="5" rx="1"/><rect x="248" y="160" width="8" height="5" rx="1" fill="#ff6b3d"/></g>
+    <g class="meter" style="--d:.95s"><rect x="310" y="208" width="8" height="5" rx="1"/><rect x="310" y="200" width="8" height="5" rx="1"/><rect x="310" y="192" width="8" height="5" rx="1"/><rect x="310" y="184" width="8" height="5" rx="1"/><rect x="310" y="176" width="8" height="5" rx="1"/><rect x="310" y="168" width="8" height="5" rx="1"/><rect x="310" y="160" width="8" height="5" rx="1" fill="#ff6b3d"/></g>
+  </g>
+</svg>

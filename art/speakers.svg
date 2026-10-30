@@ -1,0 +1,30 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PA speakers and subwoofer">
+  <defs>
+    <linearGradient id="g-sp" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="300">
+      <stop offset="0" stop-color="#fff27a"/><stop offset=".4" stop-color="#ffd21f"/><stop offset=".75" stop-color="#d9a520"/><stop offset="1" stop-color="#ffe45c"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#g-sp)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left speaker on stand -->
+    <path d="M82 150 L82 262 M82 228 L48 290 M82 228 L116 290 M82 228 L82 292"/>
+    <rect x="38" y="16" width="88" height="134" rx="10" fill="#121212"/>
+    <rect x="62" y="30" width="40" height="18" rx="8"/>
+    <circle cx="82" cy="102" r="32" fill="#0b0b0b"/>
+    <g class="pulse"><circle cx="82" cy="102" r="22" stroke-opacity=".6"/><circle cx="82" cy="102" r="8" fill="url(#g-sp)" stroke="none"/></g>
+    <path d="M138 70 A40 40 0 0 1 138 134" stroke-opacity=".4"/>
+    <path d="M150 58 A56 56 0 0 1 150 146" stroke-opacity=".22"/>
+    <!-- right speaker on stand -->
+    <path d="M318 150 L318 262 M318 228 L284 290 M318 228 L352 290 M318 228 L318 292"/>
+    <rect x="274" y="16" width="88" height="134" rx="10" fill="#121212"/>
+    <rect x="298" y="30" width="40" height="18" rx="8"/>
+    <circle cx="318" cy="102" r="32" fill="#0b0b0b"/>
+    <g class="pulse"><circle cx="318" cy="102" r="22" stroke-opacity=".6"/><circle cx="318" cy="102" r="8" fill="url(#g-sp)" stroke="none"/></g>
+    <path d="M262 70 A40 40 0 0 0 262 134" stroke-opacity=".4"/>
+    <path d="M250 58 A56 56 0 0 0 250 146" stroke-opacity=".22"/>
+    <!-- subwoofer -->
+    <rect x="148" y="168" width="104" height="122" rx="10" fill="#121212"/>
+    <circle cx="200" cy="232" r="40" fill="#0b0b0b"/>
+    <g class="pulse pulse-deep"><circle cx="200" cy="232" r="28" stroke-opacity=".6"/><circle cx="200" cy="232" r="11" fill="url(#g-sp)" stroke="none"/></g>
+    <circle cx="164" cy="182" r="3"/>
+  </g>
+</svg>

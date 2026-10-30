@@ -1,0 +1,37 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Turntable">
+  <defs>
+    <linearGradient id="g-tt" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="300">
+      <stop offset="0" stop-color="#fff27a"/><stop offset=".4" stop-color="#ffd21f"/><stop offset=".75" stop-color="#d9a520"/><stop offset="1" stop-color="#ffe45c"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#g-tt)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- plinth -->
+    <rect x="20" y="36" width="360" height="228" rx="18" fill="#121212"/>
+    <circle cx="44" cy="60" r="5"/>
+    <!-- record -->
+    <circle cx="170" cy="150" r="98" fill="#0b0b0b"/>
+    <g class="spin">
+      <circle cx="170" cy="150" r="86" stroke-opacity=".28" stroke-width="1.5"/>
+      <circle cx="170" cy="150" r="74" stroke-opacity=".22" stroke-width="1.5"/>
+      <circle cx="170" cy="150" r="62" stroke-opacity=".28" stroke-width="1.5"/>
+      <circle cx="170" cy="150" r="50" stroke-opacity=".22" stroke-width="1.5"/>
+      <path d="M118 102 A72 72 0 0 1 170 78" stroke="#fff" stroke-opacity=".35" stroke-width="3"/>
+      <circle cx="170" cy="150" r="26" fill="url(#g-tt)" stroke="none"/>
+      <path d="M158 142 L184 150 L158 158 Z" fill="#0b0b0b" stroke="none"/>
+    </g>
+    <circle cx="170" cy="150" r="3.5" fill="#0b0b0b"/>
+    <!-- tonearm -->
+    <circle cx="328" cy="74" r="16" fill="#121212"/>
+    <circle cx="328" cy="74" r="6"/>
+    <path d="M328 74 L316 188 L252 208"/>
+    <rect x="236" y="200" width="22" height="13" rx="3" transform="rotate(-17 247 206)" fill="#121212"/>
+    <circle cx="340" cy="50" r="7"/>
+    <!-- pitch fader -->
+    <rect x="344" y="132" width="14" height="96" rx="5"/>
+    <rect x="338" y="172" width="26" height="12" rx="3" fill="url(#g-tt)" stroke="none"/>
+    <!-- start/stop + speed -->
+    <rect x="38" y="226" width="44" height="20" rx="5"/>
+    <circle cx="100" cy="236" r="6"/>
+    <circle cx="118" cy="236" r="6"/>
+  </g>
+</svg>

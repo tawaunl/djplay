@@ -143,6 +143,20 @@ h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
 .page-hero .actions { margin-top: 28px; }
 .page-hero + .marquee { margin-top: 0; }
 
+/* ---------- gear illustrations ---------- */
+.page-hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+.gear { width: 100%; max-width: 420px; justify-self: center; }
+.gear svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 22px rgba(255, 210, 31, .16)); }
+.about-grid .gear { max-width: 360px; margin-top: 36px; justify-self: start; }
+.gear .spin { transform-box: fill-box; transform-origin: center; animation: spin 2.4s linear infinite; }
+.gear .spin-slow { animation-duration: 3.6s; }
+.gear .pulse { transform-box: fill-box; transform-origin: center; animation: thump .46s ease-in-out infinite alternate; }
+.gear .pulse-deep { animation-duration: .92s; }
+.gear .meter { transform-box: fill-box; transform-origin: bottom; animation: level var(--d, .7s) ease-in-out infinite alternate; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes thump { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes level { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
+
 /* ---------- marquee ---------- */
 .marquee {
   background: var(--gold-grad); color: #0a0a0a; overflow: hidden;
@@ -456,7 +470,9 @@ h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
 }
 
 @media (max-width: 900px) {
-  .feature-grid, .mixes-feature, .press-hero-grid { grid-template-columns: 1fr; }
+  .feature-grid, .mixes-feature, .press-hero-grid, .page-hero-grid { grid-template-columns: 1fr; }
+  .page-hero-grid .gear { max-width: 300px; justify-self: start; }
+  .about-grid .gear { display: none; }
   .mixes-feature { gap: 36px; }
   .press-logo { display: none; }
   .facts { grid-template-columns: 1fr 1fr; }

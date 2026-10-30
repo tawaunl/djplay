@@ -155,15 +155,23 @@ def page(c: dict, *, title: str, description: str, base: str, path: str, body: s
 
 # --------------------------------------------------------------------- pieces
 
-def page_hero(eyebrow: str, title: str, lede: str = "", actions: str = "") -> str:
+def gear(name: str) -> str:
+    """Inline one of the gold line-art gear illustrations from art/ (inline so CSS can animate it)."""
+    svg = (ROOT / "art" / f"{name}.svg").read_text()
+    return f'<div class="gear gear-{e(name)}" aria-hidden="true">{svg}</div>'
+
+
+def page_hero(eyebrow: str, title: str, lede: str = "", actions: str = "", art: str = "") -> str:
     lede_html = f'<p class="lede">{lede}</p>' if lede else ""
     actions_html = f'<div class="actions">{actions}</div>' if actions else ""
-    return f"""<section class="page-hero">
-  <div class="wrap">
-    <p class="eyebrow">{e(eyebrow)}</p>
+    copy = f"""<p class="eyebrow">{e(eyebrow)}</p>
     <h1 class="display">{title}</h1>
     {lede_html}
-    {actions_html}
+    {actions_html}"""
+    inner = f'<div class="page-hero-grid"><div>{copy}</div>{gear(art)}</div>' if art else copy
+    return f"""<section class="page-hero">
+  <div class="wrap">
+    {inner}
   </div>
 </section>"""
 
@@ -508,6 +516,7 @@ def home(c: dict) -> str:
     <div class="reveal">
       <p class="eyebrow">About</p>
       <h2 class="display">Mixing since <span class="gold-text">{e(site['since'])}</span></h2>
+      {gear("turntable")}
     </div>
     <div class="reveal">
       <p class="body-copy">{e(c['bio']['long'][0])}</p>
@@ -532,7 +541,8 @@ def weddings(c: dict) -> str:
         "Do you play the ceremony?", "Will you work with our planner and venue?", "Can I send song requests?",
         "Do you travel?", "How far ahead should I book?", "How do I lock in my date?"}]
     body = f"""{page_hero("Weddings", w["headline"], e(w["intro"]),
-        f'<a class="btn btn-gold" href="{book_link("../", type="Wedding")}">Check your date</a><a class="btn btn-ghost" href="#wedding-packages">Wedding packages</a>')}
+        f'<a class="btn btn-gold" href="{book_link("../", type="Wedding")}">Check your date</a><a class="btn btn-ghost" href="#wedding-packages">Wedding packages</a>',
+        art="controller")}
 {marquee(["Ceremony", "Cocktail Hour", "Grand Entrance", "First Dance", "Toasts", "Reception", "Last Dance"])}
 
 <section class="section">
@@ -575,7 +585,8 @@ def corporate(c: dict) -> str:
         "Can you handle speeches and announcements?", "Can you keep the music clean?", "Do you travel?",
         "What if something goes wrong with the equipment?", "How do I lock in my date?"}]
     body = f"""{page_hero("Corporate Events", corp["headline"], e(corp["intro"]),
-        f'<a class="btn btn-gold" href="{book_link("../", type="Corporate event")}">Request a quote</a><a class="btn btn-ghost" href="../packages/#event-packages">See packages</a>')}
+        f'<a class="btn btn-gold" href="{book_link("../", type="Corporate event")}">Request a quote</a><a class="btn btn-ghost" href="../packages/#event-packages">See packages</a>',
+        art="speakers")}
 {marquee(corp['event_types'])}
 
 <section class="section">
@@ -679,7 +690,7 @@ def photo_booth(c: dict) -> str:
 
 def mixes(c: dict) -> str:
     mixcloud = next((s["url"] for s in c["socials"] if s["label"] == "Mixcloud"), "")
-    body = f"""{page_hero("Mixes", 'Hear the <span class="gold-text">sound</span>', e(c["mixes_intro"]))}
+    body = f"""{page_hero("Mixes", 'Hear the <span class="gold-text">sound</span>', e(c["mixes_intro"]), art="mixer")}
 <section class="section section-tight">
   <div class="wrap">
     <div class="mix-list">{"".join(mix_card(m) for m in c["mixes"])}</div>

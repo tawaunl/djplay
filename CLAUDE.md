@@ -17,6 +17,7 @@ Never list Claude as an author, co-author, or contributor anywhere in this repo.
 - `content.json`: all site copy. Edit this, not the generated HTML.
 - `build.py`: renders `dist/` from `content.json` and `static/` (standard library only). One function per page.
 - `static/`: CSS, JS and images copied into `dist/` as-is.
+- `art/`: gold line-art gear illustrations (turntable, mixer, controller, speakers), inlined into pages by `gear()` so CSS can animate them.
 - `.github/workflows/pages.yml`: builds and deploys to GitHub Pages on push to `main` and daily. The site lives at https://tawaunl.github.io/djplay/, so all links are relative (no leading `/`), except `404.html`, which uses `site.url`.
 
 ## Before you finish a change

@@ -1,0 +1,36 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Laptop and DJ controller">
+  <defs>
+    <linearGradient id="g-ct" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="300">
+      <stop offset="0" stop-color="#fff27a"/><stop offset=".4" stop-color="#ffd21f"/><stop offset=".75" stop-color="#d9a520"/><stop offset="1" stop-color="#ffe45c"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#g-ct)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- laptop -->
+    <rect x="118" y="12" width="164" height="104" rx="8" fill="#121212"/>
+    <path d="M132 40 l6 -8 l5 14 l6 -18 l5 22 l6 -16 l5 10 l6 -6 l5 12 l6 -14 l5 8 l6 -4 l5 10 l6 -12 l5 6 l6 -8 l5 12 l6 -6 l5 4 l6 -2 l5 6 l6 -4" stroke-width="2"/>
+    <path d="M132 84 l6 6 l5 -12 l6 16 l5 -20 l6 14 l5 -8 l6 4 l5 -10 l6 12 l5 -6 l6 2 l5 -8 l6 10 l5 -4 l6 6 l5 -10 l6 4 l5 -2 l6 2 l5 -4 l6 2" stroke-width="2" stroke-opacity=".6"/>
+    <path d="M200 24 L200 106" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"/>
+    <path d="M104 116 L296 116 L306 128 L94 128 Z" fill="#121212"/>
+    <!-- controller -->
+    <rect x="16" y="140" width="368" height="146" rx="16" fill="#121212"/>
+    <circle cx="96" cy="214" r="50" fill="#0b0b0b"/>
+    <g class="spin"><circle cx="96" cy="214" r="36" stroke-opacity=".5"/><path d="M96 180 L96 196" stroke-width="4"/></g>
+    <circle cx="96" cy="214" r="10" fill="url(#g-ct)" stroke="none"/>
+    <circle cx="304" cy="214" r="50" fill="#0b0b0b"/>
+    <g class="spin spin-slow"><circle cx="304" cy="214" r="36" stroke-opacity=".5"/><path d="M304 180 L304 196" stroke-width="4"/></g>
+    <circle cx="304" cy="214" r="10" fill="url(#g-ct)" stroke="none"/>
+    <!-- center mixer -->
+    <circle cx="182" cy="164" r="8"/><circle cx="218" cy="164" r="8"/>
+    <circle cx="182" cy="190" r="8"/><circle cx="218" cy="190" r="8"/>
+    <path d="M182 208 L182 252 M218 208 L218 252" stroke-opacity=".5"/>
+    <rect x="174" y="222" width="16" height="10" rx="2" fill="url(#g-ct)" stroke="none"/>
+    <rect x="210" y="232" width="16" height="10" rx="2" fill="url(#g-ct)" stroke="none"/>
+    <path d="M172 272 L228 272" stroke-opacity=".5"/>
+    <rect x="194" y="265" width="12" height="14" rx="2" fill="url(#g-ct)" stroke="none"/>
+    <!-- play / cue -->
+    <circle cx="36" cy="248" r="8"/><path d="M33 244 L40 248 L33 252 Z" fill="url(#g-ct)" stroke="none"/>
+    <circle cx="36" cy="270" r="8"/>
+    <circle cx="364" cy="248" r="8"/><path d="M361 244 L368 248 L361 252 Z" fill="url(#g-ct)" stroke="none"/>
+    <circle cx="364" cy="270" r="8"/>
+  </g>
+</svg>
