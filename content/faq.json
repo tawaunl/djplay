@@ -1,0 +1,58 @@
+{
+  "faq": [
+    {
+      "q": "Do you play the ceremony?",
+      "a": "Yes. The Signature package covers ceremony or cocktail hour sound plus the reception, and Elite covers all three.",
+      "weddings": true,
+      "corporate": false
+    },
+    {
+      "q": "Will you work with our planner and venue?",
+      "a": "Yes. DJ Play coordinates with your planner, venue, photographer, videographer and catering team so the timeline stays on track.",
+      "weddings": true,
+      "corporate": false
+    },
+    {
+      "q": "Can you handle speeches and announcements?",
+      "a": "Yes. DJ Play MCs, and wireless microphones are included with larger packages, with extra pairs available as an add-on.",
+      "weddings": false,
+      "corporate": true
+    },
+    {
+      "q": "Can you keep the music clean?",
+      "a": "Yes. Music stays clean on request for corporate, church and family events.",
+      "weddings": false,
+      "corporate": true
+    },
+    {
+      "q": "Can I send song requests?",
+      "a": "Yes. Send your must-play and do-not-play lists before the event. Guests can also send requests live from their phones.",
+      "weddings": true,
+      "corporate": false
+    },
+    {
+      "q": "Do you travel?",
+      "a": "Yes. DJ Play covers Los Angeles, Long Beach, Orange County, Hollywood, Beverly Hills and beyond. Travel fees may apply, and your quote has no hidden costs.",
+      "weddings": true,
+      "corporate": true
+    },
+    {
+      "q": "What if something goes wrong with the equipment?",
+      "a": "DJ Play arrives with professional-grade sound and always brings backup gear.",
+      "weddings": false,
+      "corporate": true
+    },
+    {
+      "q": "How far ahead should I book?",
+      "a": "4 to 6 weeks ahead is best, and earlier for weddings. Last-minute dates are sometimes available, so ask.",
+      "weddings": true,
+      "corporate": false
+    },
+    {
+      "q": "How do I lock in my date?",
+      "a": "Send a booking request and you'll hear back within 24 hours. A signed contract and deposit secure the date.",
+      "weddings": true,
+      "corporate": true
+    }
+  ]
+}

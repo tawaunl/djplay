@@ -1,0 +1,55 @@
+{
+  "contact": {
+    "phone": "(310) 933-2227",
+    "email": "picturethisphotoboothla@gmail.com",
+    "instagram_handle": "@djplay310",
+    "instagram_url": "https://www.instagram.com/djplay310/",
+    "response_time": "Every inquiry gets a reply within 24 hours."
+  },
+  "booking": {
+    "form_endpoint": "",
+    "service_options": [
+      "DJ + MC",
+      "DJ + MC and a photo booth",
+      "Photo booth only"
+    ],
+    "event_types": [
+      "Wedding",
+      "Corporate event",
+      "Gala or fundraiser",
+      "Holiday party",
+      "Birthday or private party",
+      "Church or gospel event",
+      "Community event",
+      "Other"
+    ],
+    "steps": [
+      {
+        "title": "Send a request",
+        "text": "Tell us the date, venue, guest count and what you're booking."
+      },
+      {
+        "title": "Get a quote",
+        "text": "You'll hear back within 24 hours. No hidden costs."
+      },
+      {
+        "title": "Secure the date",
+        "text": "A signed contract and deposit lock it in."
+      }
+    ],
+    "lead_time": "Book 4 to 6 weeks ahead when you can, and earlier for weddings. Last-minute dates are sometimes available, so ask.",
+    "service_area": [
+      "Los Angeles",
+      "Long Beach",
+      "Orange County",
+      "Hollywood",
+      "Beverly Hills",
+      "Compton",
+      "Inglewood",
+      "Carson",
+      "Torrance",
+      "Pasadena",
+      "San Fernando Valley"
+    ]
+  }
+}

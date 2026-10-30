@@ -1,0 +1,82 @@
+{
+  "weddings": {
+    "headline": "Your love story. <span class=\"gold-text\">Your sound.</span>",
+    "intro": "Weddings that feel personal, polished and alive. From the ceremony processional to the last dance, every set is built around your people, with thoughtful MC hosting and open format music.",
+    "moments": [
+      {
+        "title": "Ceremony",
+        "text": "Music for a processional that means something."
+      },
+      {
+        "title": "Cocktail hour",
+        "text": "Easy grooves while guests mingle and the photos happen."
+      },
+      {
+        "title": "Grand entrance",
+        "text": "Your introduction, planned with you and timed to the second."
+      },
+      {
+        "title": "Dinner & toasts",
+        "text": "Dinner music, plus wireless mic support for every toast."
+      },
+      {
+        "title": "Reception",
+        "text": "A packed dance floor and polished MC announcements all night."
+      }
+    ],
+    "planning": [
+      {
+        "title": "Discovery call",
+        "text": "Talk through the day, the venue, the crowd and the vibe."
+      },
+      {
+        "title": "Planning questionnaire",
+        "text": "Must-plays, do-not-plays, entrance songs and key moments."
+      },
+      {
+        "title": "Every step of the way",
+        "text": "Timeline help and coordination with your planner, venue, photographer, videographer and caterer."
+      }
+    ],
+    "packages": [
+      {
+        "name": "Celebrate",
+        "guests": "Reception only, for intimate weddings",
+        "price": "$1,199",
+        "items": [
+          "Up to 5 reception hours",
+          "DJ performance + MC hosting",
+          "Planning call and music questionnaire",
+          "Pro sound for about 150 guests",
+          "Basic reception timeline coordination"
+        ]
+      },
+      {
+        "name": "Signature",
+        "guests": "Up to 6 hours of DJ + MC",
+        "price": "$1,749",
+        "featured": true,
+        "tag": "Ideal for most weddings",
+        "items": [
+          "Ceremony or cocktail hour sound, plus reception",
+          "Wireless microphone for toasts",
+          "Planning call, timeline collaboration and music curation",
+          "Dance floor lighting"
+        ]
+      },
+      {
+        "name": "Elite",
+        "guests": "Up to 8 hours of DJ + MC",
+        "price": "$2,499",
+        "items": [
+          "Ceremony, cocktail hour and reception sound",
+          "Expanded sound coverage",
+          "Premium dance floor lighting",
+          "Planning calls and fuller timeline support",
+          "Unified vendor coordination",
+          "2-hour Glam Photo Booth"
+        ]
+      }
+    ]
+  }
+}

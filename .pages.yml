@@ -1,0 +1,572 @@
+# Pages CMS (https://pagescms.org) setup for the DJ Play site.
+#
+# Each entry under `content` is one section in the Pages CMS sidebar and edits one
+# file in content/. Every key in those files is listed here (with `hidden: true` for
+# ones that shouldn't be edited from the CMS), so saving from Pages CMS never drops data.
+# If you add a key to a content file, add it here too.
+#
+# Saving in Pages CMS commits to main, which runs .github/workflows/pages.yml and
+# updates the live site in about a minute.
+
+media:
+  input: static/assets/img/uploads
+  output: assets/img/uploads
+  categories: [image]
+
+content:
+  # ------------------------------------------------------------ upcoming events
+  - name: events
+    label: Upcoming events
+    type: file
+    path: content/events.json
+    format: json
+    fields:
+      - name: dates
+        label: Events
+        description: Public events only. Past events disappear from the site on their own.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date}: {title}"
+        fields:
+          - name: date
+            label: Date
+            type: date
+            required: true
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: time
+            label: Time
+            type: string
+            description: Optional, e.g. 9pm
+          - name: title
+            label: Event name
+            type: string
+            required: true
+          - name: venue
+            label: Venue
+            type: string
+            required: true
+          - name: city
+            label: City
+            type: string
+            required: true
+          - name: url
+            label: Ticket or info link
+            type: string
+            description: Optional. The full link, starting with https://
+          - name: link_label
+            label: Button text
+            type: string
+            description: Optional. Shown on the link button, e.g. Tickets or RSVP. Defaults to "Details".
+
+  # ------------------------------------------------------------------- mixes
+  - name: mixes
+    label: Mixes
+    type: file
+    path: content/mixes.json
+    format: json
+    fields:
+      - name: mixes_intro
+        label: Intro line
+        type: text
+      - name: mixes
+        label: Mixes
+        description: Newest first. The first two also show on the home page.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: description
+            label: Short description
+            type: string
+          - name: url
+            label: Mixcloud link
+            type: string
+            required: true
+            description: Copy the mix's address from Mixcloud, e.g. https://www.mixcloud.com/Djplay310/funk-you-up/. The player is added automatically.
+          - name: embed
+            label: Custom player link
+            type: string
+            hidden: true
+
+  # ---------------------------------------------------------------- weddings
+  - name: weddings
+    label: Weddings
+    type: file
+    path: content/weddings.json
+    format: json
+    fields:
+      - name: weddings
+        label: Weddings page
+        type: object
+        fields:
+          - name: headline
+            type: string
+            hidden: true
+          - name: intro
+            label: Intro
+            type: text
+          - name: moments
+            label: The day (timeline)
+            type: object
+            list: true
+            fields:
+              - name: title
+                type: string
+              - name: text
+                type: text
+          - name: planning
+            label: How planning works (steps)
+            type: object
+            list: true
+            fields:
+              - name: title
+                type: string
+              - name: text
+                type: text
+          - name: packages
+            label: Wedding packages
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name}: {price}"
+            fields:
+              - name: name
+                label: Package name
+                type: string
+                required: true
+              - name: guests
+                label: Who it's for
+                type: string
+              - name: price
+                label: Starting price
+                type: string
+                description: Include the $, e.g. $1,199
+              - name: featured
+                label: Highlight this package
+                type: boolean
+              - name: tag
+                label: Badge text
+                type: string
+                description: Optional small label on top of the card, e.g. Ideal for most weddings
+              - name: items
+                label: What's included
+                type: string
+                list: true
+
+  # ------------------------------------------------------------ event packages
+  - name: packages
+    label: Event packages
+    type: file
+    path: content/packages.json
+    format: json
+    fields:
+      - name: packages_intro
+        label: Packages page intro
+        type: text
+      - name: packages
+        label: Event packages (corporate, parties and more)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}: {price}"
+        fields:
+          - name: name
+            label: Package name
+            type: string
+            required: true
+          - name: guests
+            label: Guest count
+            type: string
+          - name: price
+            label: Starting price
+            type: string
+            description: Include the $, e.g. $799
+          - name: featured
+            label: Highlight this package
+            type: boolean
+            description: The highlighted package is also shown on the Corporate page.
+          - name: tag
+            label: Badge text
+            type: string
+          - name: items
+            label: What's included
+            type: string
+            list: true
+      - name: addons
+        label: Add-ons
+        type: object
+        list: true
+        fields:
+          - name: name
+            type: string
+          - name: price
+            type: string
+      - name: packages_note
+        label: Fine print under add-ons
+        type: text
+      - name: events
+        label: Event types ("Built for any crowd" cards)
+        type: object
+        list: true
+        fields:
+          - name: title
+            type: string
+          - name: text
+            type: text
+          - name: href
+            type: string
+            hidden: true
+
+  # --------------------------------------------------------------------- faq
+  - name: faq
+    label: FAQ
+    type: file
+    path: content/faq.json
+    format: json
+    fields:
+      - name: faq
+        label: Questions
+        description: Every question shows on the Packages page. Tick the boxes to also show it on the Weddings or Corporate page.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{q}"
+        fields:
+          - name: q
+            label: Question
+            type: string
+            required: true
+          - name: a
+            label: Answer
+            type: text
+            required: true
+          - name: weddings
+            label: Show on Weddings page
+            type: boolean
+          - name: corporate
+            label: Show on Corporate page
+            type: boolean
+
+  # ---------------------------------------------------------------- corporate
+  - name: corporate
+    label: Corporate
+    type: file
+    path: content/corporate.json
+    format: json
+    fields:
+      - name: corporate
+        label: Corporate page
+        type: object
+        fields:
+          - name: headline
+            type: string
+            hidden: true
+          - name: intro
+            label: Intro
+            type: text
+          - name: event_types
+            label: Event types
+            type: string
+            list: true
+          - name: features
+            label: What you get
+            type: object
+            list: true
+            fields:
+              - name: title
+                type: string
+              - name: text
+                type: text
+
+  # -------------------------------------------------------------- photo booth
+  - name: photobooth
+    label: Photo booth
+    type: file
+    path: content/photobooth.json
+    format: json
+    fields:
+      - name: photobooth
+        label: Picture This Booth LA
+        type: object
+        fields:
+          - name: name
+            label: Company name
+            type: string
+          - name: tagline
+            label: Tagline
+            type: string
+          - name: phone
+            label: Photo booth phone
+            type: string
+            description: Shown for photo booth questions, e.g. (626) 766-0877
+          - name: intro
+            label: Intro
+            type: text
+          - name: url
+            label: Website
+            type: string
+          - name: pricing_url
+            label: Pricing page link
+            type: string
+          - name: booths
+            label: Booths
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name}"
+            fields:
+              - name: name
+                type: string
+                required: true
+              - name: text
+                label: Description
+                type: text
+              - name: from
+                label: Starting price
+                type: string
+                description: Include the $. Leave empty to hide the price.
+          - name: also
+            label: Also available
+            type: string
+            list: true
+
+  # --------------------------------------------------------------- about & bio
+  - name: about
+    label: About & bio
+    type: file
+    path: content/about.json
+    format: json
+    fields:
+      - name: site
+        label: Basics
+        type: object
+        fields:
+          - name: name
+            label: DJ name
+            type: string
+          - name: full_name
+            label: Full name
+            type: string
+          - name: tagline
+            label: Tagline
+            type: string
+          - name: location
+            label: Based in
+            type: string
+          - name: region
+            label: Service area (one line)
+            type: string
+          - name: since
+            label: Mixing since (year)
+            type: string
+          - name: url
+            type: string
+            hidden: true
+          - name: logo
+            type: string
+            hidden: true
+          - name: og_image
+            type: string
+            hidden: true
+      - name: bio
+        label: Bio
+        type: object
+        fields:
+          - name: short
+            label: Short bio
+            type: text
+          - name: long
+            label: Full bio (one box per paragraph)
+            type: text
+            list: true
+      - name: stats
+        label: Stats
+        type: object
+        list: true
+        fields:
+          - name: value
+            type: string
+          - name: label
+            type: string
+      - name: genres
+        label: Genres
+        type: string
+        list: true
+      - name: marquee
+        label: Scrolling banner words (home page)
+        type: string
+        list: true
+      - name: reasons
+        label: Why DJ Play (home page)
+        type: object
+        list: true
+        fields:
+          - name: title
+            type: string
+          - name: text
+            type: text
+
+  # ---------------------------------------------------------- contact & booking
+  - name: contact
+    label: Contact & booking
+    type: file
+    path: content/contact.json
+    format: json
+    fields:
+      - name: contact
+        label: Contact
+        type: object
+        fields:
+          - name: phone
+            label: DJ phone
+            type: string
+            description: e.g. (310) 933-2227
+          - name: email
+            label: Email
+            type: string
+            description: Booking requests are sent here.
+          - name: instagram_handle
+            label: Instagram handle
+            type: string
+          - name: instagram_url
+            label: Instagram link
+            type: string
+          - name: response_time
+            label: Response time line
+            type: string
+      - name: booking
+        label: Booking form
+        type: object
+        fields:
+          - name: form_endpoint
+            label: Formspree link
+            type: string
+            description: Optional. Paste a Formspree form link (https://formspree.io/f/...) to get requests by email straight from the site. Leave empty and the form opens the visitor's email app instead.
+          - name: service_options
+            type: string
+            list: true
+            hidden: true
+          - name: event_types
+            label: Event types in the form
+            type: string
+            list: true
+          - name: steps
+            label: Booking steps
+            type: object
+            list: true
+            fields:
+              - name: title
+                type: string
+              - name: text
+                type: text
+          - name: lead_time
+            label: How far ahead to book
+            type: text
+          - name: service_area
+            label: Service area (cities)
+            type: string
+            list: true
+
+  # ------------------------------------------------------------- social & feed
+  - name: social
+    label: Social & feed
+    type: file
+    path: content/social.json
+    format: json
+    fields:
+      - name: socials
+        label: Social links
+        type: object
+        list: true
+        fields:
+          - name: label
+            type: string
+          - name: url
+            type: string
+      - name: song_request_url
+        label: Song request link
+        type: string
+      - name: social_feed
+        label: Instagram feed
+        type: object
+        fields:
+          - name: behold_feed_id
+            label: Behold feed ID
+            type: string
+            description: For a live feed, create a free feed at behold.so, connect @djplay310, and paste the feed ID here.
+          - name: instagram_posts
+            label: Instagram post links
+            type: string
+            list: true
+            description: Or paste links to specific posts to show those instead. With both empty, a Follow card shows.
+
+  # ---------------------------------------------------------------- press kit
+  - name: press
+    label: Press kit
+    type: file
+    path: content/press.json
+    format: json
+    fields:
+      - name: press
+        label: Press kit
+        type: object
+        fields:
+          - name: intro
+            label: Intro
+            type: text
+          - name: photos
+            label: Press photos
+            description: The Press photos section shows once you add at least one.
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Photo
+                type: image
+              - name: alt
+                label: Describe the photo
+                type: string
+              - name: credit
+                label: Photo credit
+                type: string
+                description: "e.g. Photo: Jane Smith"
+          - name: logos
+            label: Logos
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Logo file
+                type: image
+              - name: label
+                type: string
+              - name: meta
+                label: File details
+                type: string
+          - name: focus
+            label: Events he books
+            type: string
+            list: true
+          - name: brings
+            label: What DJ Play brings
+            type: string
+            list: true
+          - name: venue_needs
+            label: What the venue needs
+            type: string
+            list: true
+            description: Optional. Shows once you add at least one item.

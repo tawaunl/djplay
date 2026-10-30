@@ -1,0 +1,29 @@
+{
+  "press": {
+    "intro": "Bios, logos, mixes and contacts for planners, venues, promoters and media.",
+    "photos": [],
+    "logos": [
+      {
+        "src": "assets/img/press/dj-play-logo.jpg",
+        "label": "Logo, gold on black",
+        "meta": "JPG, 1933 x 2000"
+      }
+    ],
+    "focus": [
+      "Weddings & receptions",
+      "Corporate events & galas",
+      "Private parties",
+      "Church & gospel events",
+      "Community events"
+    ],
+    "brings": [
+      "Professional sound system with subwoofer",
+      "Wireless microphones for toasts and speeches",
+      "Dance floor lighting",
+      "Additional PA for large rooms",
+      "Backup gear at every event",
+      "Setup, transport and breakdown"
+    ],
+    "venue_needs": []
+  }
+}

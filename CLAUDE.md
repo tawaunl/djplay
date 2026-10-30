@@ -14,8 +14,9 @@ Never list Claude as an author, co-author, or contributor anywhere in this repo.
 
 ## Layout
 
-- `content.json`: all site copy. Edit this, not the generated HTML.
-- `build.py`: renders `dist/` from `content.json` and `static/` (standard library only). One function per page.
+- `content/*.json`: all site copy, one file per topic. Edit these, not the generated HTML. `build.py` merges them into one dict (top-level keys must be unique across files).
+- `.pages.yml`: Pages CMS editor config. Every key in every content file must have a matching field here (use `hidden: true` for ones the owner shouldn't edit), so CMS saves never drop data. When you add or rename a content key, update `.pages.yml` in the same change. Dawaun (not a coder) edits content through Pages CMS, so `git pull` before editing content by hand.
+- `build.py`: renders `dist/` from `content/` and `static/` (standard library only). One function per page. Phone `tel:` links, Mixcloud players and the booking form's package choices are derived, not stored.
 - `static/`: CSS, JS and images copied into `dist/` as-is.
 - `art/`: gold line-art gear illustrations (turntable, mixer, controller, speakers), inlined into pages by `gear()` so CSS can animate them.
 - `.github/workflows/pages.yml`: builds and deploys to GitHub Pages on push to `main` and daily. The site lives at https://tawaunl.github.io/djplay/, so all links are relative (no leading `/`), except `404.html`, which uses `site.url`.

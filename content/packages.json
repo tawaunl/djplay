@@ -1,0 +1,82 @@
+{
+  "packages_intro": "Wedding packages built around your day, plus event packages for corporate functions, parties and celebrations.",
+  "packages": [
+    {
+      "name": "Silver",
+      "guests": "Up to 60 guests",
+      "price": "$599",
+      "items": [
+        "Up to 5 hours",
+        "Pro sound system",
+        "Microphone",
+        "Setup & breakdown"
+      ]
+    },
+    {
+      "name": "Gold",
+      "guests": "60 to 100 guests",
+      "price": "$799",
+      "items": [
+        "Up to 5 hours",
+        "Pro sound + subwoofer",
+        "Wireless microphone",
+        "Dance floor lighting",
+        "Setup & breakdown"
+      ]
+    },
+    {
+      "name": "Diamond",
+      "guests": "100+ guests",
+      "price": "$1,099",
+      "featured": true,
+      "tag": "Best for corporate",
+      "items": [
+        "Up to 5 hours",
+        "Pro sound + subwoofer",
+        "Two wireless microphones",
+        "Dance floor lighting",
+        "Additional PA if needed",
+        "MC included"
+      ]
+    }
+  ],
+  "addons": [
+    {
+      "name": "Additional hour",
+      "price": "$125"
+    },
+    {
+      "name": "Dance floor lighting",
+      "price": "$100"
+    },
+    {
+      "name": "Wireless mics (pair)",
+      "price": "$50"
+    }
+  ],
+  "packages_note": "Prices are starting rates. Travel fees may apply depending on location.",
+  "events": [
+    {
+      "title": "Weddings & Receptions",
+      "text": "From the ceremony processional to the last dance, with thoughtful MC hosting.",
+      "href": "weddings/"
+    },
+    {
+      "title": "Corporate & Galas",
+      "text": "Background music, seamless transitions between speeches and dancing, and a polished MC.",
+      "href": "corporate/"
+    },
+    {
+      "title": "Private Parties",
+      "text": "Birthdays, anniversaries and milestone celebrations."
+    },
+    {
+      "title": "Church & Gospel",
+      "text": "Watch Night, New Year's Eve and church anniversaries, kept clean and family-friendly."
+    },
+    {
+      "title": "Community & Cultural",
+      "text": "Block parties, festivals and neighborhood gatherings."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "photobooth": {
+    "name": "Picture This Booth LA",
+    "tagline": "A luxe photo booth rental experience",
+    "phone": "(626) 766-0877",
+    "intro": "DJ Play is part of Picture This Booth LA, a luxe photo booth rental company serving Los Angeles and Orange County. Book the music and the booth together and your guests go home with prints, GIFs and slow-mo videos.",
+    "url": "https://picturethisboothla.com/",
+    "pricing_url": "https://picturethisboothla.com/pricing",
+    "booths": [
+      {
+        "name": "Glam Booth",
+        "text": "Black-and-white portraits with a skin-smoothing filter, plus 4x6 prints.",
+        "from": "$895"
+      },
+      {
+        "name": "360 Booth",
+        "text": "Slow-motion video on a rotating platform, ready to share.",
+        "from": "$799"
+      },
+      {
+        "name": "Digital",
+        "text": "Photos, GIFs and boomerangs with your logo and colors. Built for brand events.",
+        "from": "$399"
+      },
+      {
+        "name": "Open Air",
+        "text": "Studio-quality prints, photos, video and GIFs.",
+        "from": "$595"
+      },
+      {
+        "name": "Enclosed",
+        "text": "A private, customizable booth with prints and digital copies.",
+        "from": "$995"
+      },
+      {
+        "name": "Magazine",
+        "text": "Guests land on their own custom magazine cover.",
+        "from": "$999"
+      },
+      {
+        "name": "Vintage",
+        "text": "A classic-style booth with branding, prints and digital downloads.",
+        "from": ""
+      }
+    ],
+    "also": [
+      "Wedding Booths",
+      "AI Photo Booth",
+      "Trading Card Booth",
+      "Holiday Booth",
+      "AI Sketch Generator",
+      "Professional Headshots"
+    ]
+  }
+}

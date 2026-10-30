@@ -1,0 +1,40 @@
+{
+  "corporate": {
+    "headline": "Corporate events that <span class=\"gold-text\">run on time.</span>",
+    "intro": "Professional background music, seamless transitions between speeches and dancing, and a polished MC presence that represents your brand well.",
+    "event_types": [
+      "Holiday parties",
+      "Galas & fundraisers",
+      "Company celebrations",
+      "Award nights",
+      "Receptions & mixers",
+      "Team events"
+    ],
+    "features": [
+      {
+        "title": "Polished MC",
+        "text": "Introductions, announcements and program flow, delivered with the right tone for your company."
+      },
+      {
+        "title": "Speeches, then the party",
+        "text": "Background music while guests arrive, clean handoffs to speakers, and a dance floor when it's time."
+      },
+      {
+        "title": "Mics for every speaker",
+        "text": "Wireless microphones included with larger packages, with extra pairs available."
+      },
+      {
+        "title": "Sound for big rooms",
+        "text": "Pro sound with a subwoofer, and additional PA when the room needs it."
+      },
+      {
+        "title": "Clean, crowd-safe music",
+        "text": "Every set stays clean and workplace-appropriate on request."
+      },
+      {
+        "title": "Branded photo booth",
+        "text": "Add a digital photo booth with your logo and colors from Picture This Booth LA."
+      }
+    ]
+  }
+}

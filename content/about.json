@@ -1,0 +1,76 @@
+{
+  "site": {
+    "name": "DJ Play",
+    "full_name": "Dawaun Lucas",
+    "tagline": "Wedding and corporate event DJ and MC in Los Angeles.",
+    "location": "Compton, CA",
+    "region": "Serving Los Angeles, Orange County and beyond",
+    "since": "2008",
+    "url": "https://tawaunl.github.io/djplay/",
+    "logo": "assets/img/logo.jpg",
+    "og_image": "assets/img/og-image.jpg"
+  },
+  "bio": {
+    "short": "DJ Play (Dawaun Lucas) is a wedding and corporate event DJ and MC from Compton, mixing since 2008. Open format music for every generation and a polished MC, across Los Angeles and Orange County.",
+    "long": [
+      "DJ Play is Dawaun Lucas, a DJ and MC from Compton who has been mixing since 2008. He's open format, so a set can move from golden-era hip-hop to the funk that came before it, then through R&B, throwbacks and today's hits. Every generation in the room hears a song they know.",
+      "He works the mic as well as the decks. At a wedding that means a processional that lands, a grand entrance with energy, and toasts that run smoothly. At a corporate event it means background music while people mingle, clean handoffs between speeches and dancing, and an MC who represents your brand well.",
+      "For more than 15 years he has played weddings, corporate events and galas, private parties, church celebrations and community gatherings across Los Angeles. Send your must-play and do-not-play lists ahead of time, and he keeps it clean whenever the room calls for it."
+    ]
+  },
+  "stats": [
+    {
+      "value": "2008",
+      "label": "Mixing since"
+    },
+    {
+      "value": "15+",
+      "label": "Years of events"
+    },
+    {
+      "value": "DJ + MC",
+      "label": "On the decks and the mic"
+    },
+    {
+      "value": "So-Cal",
+      "label": "LA County and beyond"
+    }
+  ],
+  "genres": [
+    "Hip-Hop",
+    "Funk",
+    "R&B",
+    "Old School",
+    "Top 40",
+    "Throwbacks",
+    "Gospel",
+    "Open Format"
+  ],
+  "marquee": [
+    "Weddings",
+    "Corporate Events",
+    "Galas",
+    "Receptions",
+    "Holiday Parties",
+    "Open Format",
+    "DJ + MC"
+  ],
+  "reasons": [
+    {
+      "title": "Reads the room",
+      "text": "Open format means the music follows your crowd, from grandparents to coworkers to the friends who came to dance."
+    },
+    {
+      "title": "Holds the room",
+      "text": "A polished MC who handles entrances, toasts, speeches and announcements, and keeps the timeline on track."
+    },
+    {
+      "title": "Plans with you",
+      "text": "A planning call, a music questionnaire, and must-play and do-not-play lists. He works with your planner and venue too."
+    },
+    {
+      "title": "Never misses a beat",
+      "text": "Professional-grade sound, and backup gear at every event. Quotes are clear with no hidden costs."
+    }
+  ]
+}

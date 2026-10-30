@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Build the DJ Play site from content.json.
+"""Build the DJ Play site from the JSON files in content/.
 
 Usage:
     ./build.py              # writes dist/
     ./build.py --out DIR    # writes DIR/
 
 Standard library only. Static files in static/ are copied as-is; every page
-is rendered from content.json. Links are relative so the site works both at
+is rendered from content/*.json (edited by hand or through Pages CMS, see
+.pages.yml). Links are relative so the site works both at
 a domain root and under a GitHub Pages project path (/djplay/).
 """
 
@@ -39,6 +40,17 @@ EXT = 'target="_blank" rel="noopener"'
 
 def e(value: object) -> str:
     return escape(str(value), quote=True)
+
+
+def tel(phone: str) -> str:
+    """'(310) 933-2227' -> '+13109332227' for tel: links."""
+    digits = "".join(ch for ch in phone if ch.isdigit())
+    return "+1" + digits if len(digits) == 10 else "+" + digits
+
+
+def asset(src: str) -> str:
+    # Pages CMS may write uploaded paths with a leading slash; links here are relative.
+    return src.lstrip("/")
 
 
 def home_href(base: str) -> str:
@@ -128,8 +140,8 @@ def footer(c: dict, base: str) -> str:
     <div>
       <p class="footer-label">Contact</p>
       <ul class="footer-list">
-        <li><a href="tel:{e(ct['phone_href'])}">DJ: {e(ct['phone'])}</a></li>
-        <li><a href="tel:{e(pb['phone_href'])}">Photo booth: {e(pb['phone'])}</a></li>
+        <li><a href="tel:{tel(ct['phone'])}">DJ: {e(ct['phone'])}</a></li>
+        <li><a href="tel:{tel(pb['phone'])}">Photo booth: {e(pb['phone'])}</a></li>
         <li><a href="mailto:{e(ct['email'])}">Email us</a></li>
         <li><a href="{e(pb['url'])}" {EXT}>{e(pb['name'])}</a></li>
       </ul>
@@ -218,10 +230,21 @@ def timeline(items: list[dict]) -> str:
     ) + "</ol>"
 
 
-def mix_card(m: dict) -> str:
+def mix_embed(m: dict) -> str:
     if m.get("embed"):
+        return m["embed"]
+    url = m.get("url", "")
+    if "mixcloud.com/" in url:
+        path = "/" + url.split("mixcloud.com/", 1)[1].split("?")[0].strip("/") + "/"
+        return "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=" + quote(path, safe="")
+    return ""
+
+
+def mix_card(m: dict) -> str:
+    embed = mix_embed(m)
+    if embed:
         media = (
-            f'<iframe src="{e(m["embed"])}" title="{e(m["title"])} by DJ Play" width="100%" height="120" '
+            f'<iframe src="{e(embed)}" title="{e(m["title"])} by DJ Play" width="100%" height="120" '
             f'loading="lazy" allow="encrypted-media; fullscreen; autoplay"></iframe>'
         )
     else:
@@ -410,7 +433,7 @@ def cta_band(c: dict, base: str, title: str = 'Lock in <span class="gold-text">y
     <p class="section-sub">{e(c['contact']['response_time'])}</p>
     <div class="actions center-actions">
       <a class="btn btn-gold" href="{book_link(base, **params)}">Check your date</a>
-      <a class="btn btn-ghost" href="tel:{e(ct['phone_href'])}">Call {e(ct['phone'])}</a>
+      <a class="btn btn-ghost" href="tel:{tel(ct['phone'])}">Call {e(ct['phone'])}</a>
     </div>
   </div>
 </section>"""
@@ -420,6 +443,12 @@ def options(values: list[str], selected: str = "") -> str:
     return "".join(
         f'<option value="{e(v)}"{" selected" if v == selected else ""}>{e(v)}</option>' for v in values
     )
+
+
+def package_choices(c: dict) -> list[str]:
+    # Must match the ?package= values that package_cards() puts on "Book" links.
+    return ([p["name"] + " (wedding)" for p in c["weddings"]["packages"]]
+            + [p["name"] for p in c["packages"]] + ["Not sure yet"])
 
 
 def booking_form(c: dict) -> str:
@@ -433,7 +462,7 @@ def booking_form(c: dict) -> str:
   <div class="field"><label for="f-company-name">Company (if corporate)</label><input id="f-company-name" name="company_name" autocomplete="organization"></div>
   <div class="field"><label for="f-date">Event date</label><input id="f-date" name="event_date" type="date" required></div>
   <div class="field"><label for="f-type">Event type</label><select id="f-type" name="event_type" required><option value="">Choose one</option>{options(b['event_types'])}</select></div>
-  <div class="field" data-for="dj"><label for="f-package">DJ package</label><select id="f-package" name="package"><option value="">Choose one</option>{options(b['package_options'])}</select></div>
+  <div class="field" data-for="dj"><label for="f-package">DJ package</label><select id="f-package" name="package"><option value="">Choose one</option>{options(package_choices(c))}</select></div>
   <div class="field" data-for="booth"><label for="f-booth">Photo booth</label><select id="f-booth" name="booth"><option value="">Choose one</option>{options(booths)}</select></div>
   <div class="field"><label for="f-guests">Expected guests</label><input id="f-guests" name="guests" type="number" min="1" inputmode="numeric"></div>
   <div class="field"><label for="f-hours">Start and end time</label><input id="f-hours" name="hours" placeholder="e.g. 5pm to 11pm"></div>
@@ -539,9 +568,7 @@ def home(c: dict) -> str:
 
 def weddings(c: dict) -> str:
     w = c["weddings"]
-    wedding_faq = [f for f in c["faq"] if f["q"] in {
-        "Do you play the ceremony?", "Will you work with our planner and venue?", "Can I send song requests?",
-        "Do you travel?", "How far ahead should I book?", "How do I lock in my date?"}]
+    wedding_faq = [f for f in c["faq"] if f.get("weddings")]
     body = f"""{page_hero("Weddings", w["headline"], e(w["intro"]),
         f'<a class="btn btn-gold" href="{book_link("../", type="Wedding")}">Check your date</a><a class="btn btn-ghost" href="#wedding-packages">Wedding packages</a>',
         art="controller")}
@@ -583,9 +610,7 @@ def weddings(c: dict) -> str:
 def corporate(c: dict) -> str:
     corp = c["corporate"]
     corp_pkgs = [p for p in c["packages"] if p.get("featured")] or c["packages"][-1:]
-    corp_faq = [f for f in c["faq"] if f["q"] in {
-        "Can you handle speeches and announcements?", "Can you keep the music clean?", "Do you travel?",
-        "What if something goes wrong with the equipment?", "How do I lock in my date?"}]
+    corp_faq = [f for f in c["faq"] if f.get("corporate")]
     body = f"""{page_hero("Corporate Events", corp["headline"], e(corp["intro"]),
         f'<a class="btn btn-gold" href="{book_link("../", type="Corporate event")}">Request a quote</a><a class="btn btn-ghost" href="../packages/#event-packages">See packages</a>',
         art="speakers")}
@@ -655,7 +680,7 @@ def packages(c: dict) -> str:
 def photo_booth(c: dict) -> str:
     pb = c["photobooth"]
     body = f"""{page_hero(pb["name"], 'Add a photo booth.<br><span class="gold-text">Make it an experience.</span>', e(pb["intro"]),
-        f'<a class="btn btn-gold" href="{book_link("../", service="booth")}">Book a photo booth</a><a class="btn btn-ghost" href="tel:{e(pb["phone_href"])}">Call {e(pb["phone"])}</a><a class="btn btn-ghost" href="{e(pb["url"])}" {EXT}>Visit {e(pb["name"])}</a>')}
+        f'<a class="btn btn-gold" href="{book_link("../", service="booth")}">Book a photo booth</a><a class="btn btn-ghost" href="tel:{tel(pb["phone"])}">Call {e(pb["phone"])}</a><a class="btn btn-ghost" href="{e(pb["url"])}" {EXT}>Visit {e(pb["name"])}</a>')}
 <section class="section">
   <div class="wrap">
     {section_head("The booths", "Pick your booth", "Starting prices from " + pb["name"] + ". See their site for full package details.")}
@@ -787,8 +812,8 @@ def book(c: dict) -> str:
       <ol class="steps">{steps}</ol>
       <p class="fine">{e(b['lead_time'])}</p>
       <div class="contact-card">
-        <a class="contact-row" href="tel:{e(ct['phone_href'])}"><span class="contact-label">DJ Play: call or text</span><span class="contact-value">{e(ct['phone'])}</span></a>
-        <a class="contact-row" href="tel:{e(c['photobooth']['phone_href'])}"><span class="contact-label">Photo booth questions</span><span class="contact-value">{e(c['photobooth']['phone'])}</span></a>
+        <a class="contact-row" href="tel:{tel(ct['phone'])}"><span class="contact-label">DJ Play: call or text</span><span class="contact-value">{e(ct['phone'])}</span></a>
+        <a class="contact-row" href="tel:{tel(c['photobooth']['phone'])}"><span class="contact-label">Photo booth questions</span><span class="contact-value">{e(c['photobooth']['phone'])}</span></a>
         <a class="contact-row" href="mailto:{e(ct['email'])}?subject=DJ%20Play%20booking%20inquiry"><span class="contact-label">Email</span><span class="contact-value">{e(ct['email'])}</span></a>
         <a class="contact-row" href="{e(ct['instagram_url'])}" {EXT}><span class="contact-label">DM on Instagram</span><span class="contact-value">{e(ct['instagram_handle'])}</span></a>
       </div>
@@ -808,18 +833,18 @@ def book(c: dict) -> str:
 
 def press(c: dict) -> str:
     site, bio, ct, pr = c["site"], c["bio"], c["contact"], c["press"]
-    logo = pr["logos"][0]["src"] if pr["logos"] else site["logo"]
+    logo = asset(pr["logos"][0]["src"]) if pr["logos"] else site["logo"]
     long_bio = "\n\n".join(bio["long"])
     logos = "".join(
-        f'<figure class="asset-card"><div class="asset-img"><img src="../{e(l["src"])}" alt="{e(l["label"])}" loading="lazy"></div>'
+        f'<figure class="asset-card"><div class="asset-img"><img src="../{e(asset(l["src"]))}" alt="{e(l["label"])}" loading="lazy"></div>'
         f'<figcaption><span><strong>{e(l["label"])}</strong><span class="muted small">{e(l.get("meta", ""))}</span></span>'
-        f'<a class="btn btn-ghost btn-sm no-print" href="../{e(l["src"])}" download>Download</a></figcaption></figure>'
+        f'<a class="btn btn-ghost btn-sm no-print" href="../{e(asset(l["src"]))}" download>Download</a></figcaption></figure>'
         for l in pr["logos"]
     )
     photos = "".join(
-        f'<figure class="asset-card"><div class="asset-img asset-photo"><img src="../{e(ph["src"])}" alt="{e(ph["alt"])}" loading="lazy"></div>'
+        f'<figure class="asset-card"><div class="asset-img asset-photo"><img src="../{e(asset(ph["src"]))}" alt="{e(ph["alt"])}" loading="lazy"></div>'
         f'<figcaption><span class="muted small">{e(ph.get("credit", ""))}</span>'
-        f'<a class="btn btn-ghost btn-sm no-print" href="../{e(ph["src"])}" download>Download</a></figcaption></figure>'
+        f'<a class="btn btn-ghost btn-sm no-print" href="../{e(asset(ph["src"]))}" download>Download</a></figcaption></figure>'
         for ph in pr["photos"]
     )
     photos_html = f"""<section class="section">
@@ -907,7 +932,7 @@ def press(c: dict) -> str:
     <div class="reveal">
       <h2 class="display">Contact</h2>
       <ul class="contact-list">
-        <li><span class="contact-label">Booking</span><a href="tel:{e(ct['phone_href'])}">{e(ct['phone'])}</a></li>
+        <li><span class="contact-label">Booking</span><a href="tel:{tel(ct['phone'])}">{e(ct['phone'])}</a></li>
         <li><span class="contact-label">Email</span><a href="mailto:{e(ct['email'])}">{e(ct['email'])}</a></li>
         <li><span class="contact-label">Website</span><a href="{e(site['url'])}">{e(site['url'].split('://')[-1].rstrip('/'))}</a></li>
       </ul>
@@ -949,8 +974,20 @@ PAGES = {
 }
 
 
+def load_content() -> dict:
+    """Merge content/*.json into one dict. Each file holds a few top-level keys."""
+    content: dict = {}
+    for f in sorted((ROOT / "content").glob("*.json")):
+        data = json.loads(f.read_text())
+        clash = content.keys() & data.keys()
+        if clash:
+            raise SystemExit(f"{f.name}: keys already defined in another content file: {', '.join(sorted(clash))}")
+        content.update(data)
+    return content
+
+
 def build(out: Path) -> None:
-    content = json.loads((ROOT / "content.json").read_text())
+    content = load_content()
     if out.exists():
         shutil.rmtree(out)
     shutil.copytree(ROOT / "static", out)

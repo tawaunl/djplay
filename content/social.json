@@ -1,0 +1,21 @@
+{
+  "socials": [
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/djplay310/"
+    },
+    {
+      "label": "Mixcloud",
+      "url": "https://www.mixcloud.com/Djplay310/"
+    },
+    {
+      "label": "Linktree",
+      "url": "https://linktr.ee/Djplay310"
+    }
+  ],
+  "song_request_url": "https://app.nosongrequests.com/Djplay",
+  "social_feed": {
+    "behold_feed_id": "",
+    "instagram_posts": []
+  }
+}
