@@ -189,9 +189,10 @@ def page_hero(eyebrow: str, title: str, lede: str = "", actions: str = "", art: 
 </section>"""
 
 
-def section_head(eyebrow: str, title: str, sub: str = "") -> str:
+def section_head(eyebrow: str, title: str, sub: str = "", one_line: bool = False) -> str:
     sub_html = f'<p class="section-sub">{e(sub)}</p>' if sub else ""
-    return f'<div class="section-head reveal"><p class="eyebrow">{e(eyebrow)}</p><h2 class="display">{title}</h2>{sub_html}</div>'
+    cls = "display one-line" if one_line else "display"
+    return f'<div class="section-head reveal"><p class="eyebrow">{e(eyebrow)}</p><h2 class="{cls}">{title}</h2>{sub_html}</div>'
 
 
 def marquee(words: list[str]) -> str:
@@ -515,7 +516,7 @@ def home(c: dict) -> str:
 
 <section class="section">
   <div class="wrap">
-    {section_head("What we do best", 'Two rooms. <span class="gold-text">One&nbsp;D.J.</span>')}
+    {section_head("What we do best", 'Two rooms. <span class="gold-text">One D.J.</span>', one_line=True)}
     <div class="feature-grid">
       <a class="feature reveal" href="weddings/">
         <p class="eyebrow">Weddings</p>

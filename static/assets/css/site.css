@@ -54,6 +54,8 @@ p { margin: 0 0 1em; }
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
+/* short headings that must never wrap: shrink to fit narrow screens instead */
+h2.display.one-line { white-space: nowrap; font-size: min(4.25rem, calc((100vw - 32px) / 10.5)); }
 .gold-text { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .eyebrow {
   font-family: var(--label); font-weight: 400; text-transform: uppercase;
