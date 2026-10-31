@@ -44,19 +44,20 @@ p { margin: 0 0 1em; }
 /* ---------- type ---------- */
 .display {
   font-family: var(--display); font-weight: 400;
-  line-height: 1.02; letter-spacing: -.01em; margin: 0;
+  line-height: 1; letter-spacing: -.01em; margin: 0;
 }
-/* gold accent words in headings are set in script */
+/* gold accent words in headings are set in script; line-height 0 keeps
+   the script's tall ascent/descent from pushing heading lines apart */
 .display .gold-text {
   font-family: var(--script); font-weight: 400; font-size: 1.18em; letter-spacing: 0;
-  line-height: 1; padding: .08em .12em .12em .02em;
+  line-height: 0; padding: .08em .12em .12em .02em;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
 .gold-text { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .eyebrow {
   font-family: var(--label); font-weight: 400; text-transform: uppercase;
-  letter-spacing: .28em; font-size: .78rem; color: var(--gold); margin: 0 0 14px;
+  letter-spacing: .2em; font-size: .8rem; color: var(--gold); margin: 0 0 14px;
 }
 .lede { font-size: 1.15rem; font-weight: 300; color: var(--text-2); max-width: 38ch; margin: 0 0 32px; }
 
@@ -64,7 +65,7 @@ h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   font-family: var(--label); font-weight: 500;
-  text-transform: uppercase; letter-spacing: .16em; font-size: .82rem;
+  text-transform: uppercase; letter-spacing: .12em; font-size: .85rem;
   text-decoration: none; padding: 14px 26px; border-radius: 999px;
   border: 2px solid transparent; background: none; color: inherit; cursor: pointer;
   transition: transform .15s ease, border-color .15s ease, color .15s ease, box-shadow .2s ease;
@@ -94,7 +95,7 @@ h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
 .brand {
   display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
   font-family: var(--display); font-weight: 500;
-  text-transform: uppercase; font-size: 1.35rem; letter-spacing: .12em;
+  text-transform: uppercase; font-size: 1.35rem; letter-spacing: .08em;
 }
 .brand img { width: 44px; height: auto; mix-blend-mode: lighten; }
 
@@ -116,8 +117,8 @@ h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
   position: relative; padding: clamp(48px, 9vw, 110px) 0 140px; overflow: hidden;
   background: radial-gradient(60% 60% at 80% 40%, rgba(255, 210, 31, .12), transparent 70%), var(--bg);
 }
-.hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
-.hero h1 { font-size: clamp(3.4rem, 9vw, 7.25rem); margin-bottom: 24px; }
+.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+.hero h1 { font-size: clamp(3.4rem, 7vw, 5.25rem); margin-bottom: 28px; }
 .hero-art, .about-art { position: relative; display: grid; place-items: center; }
 .hero-logo { position: relative; width: min(440px, 100%); mix-blend-mode: lighten; animation: float 6s ease-in-out infinite; }
 .logo-glow {
@@ -185,7 +186,7 @@ h2.display { font-size: clamp(2.5rem, 6vw, 4.25rem); }
 .section { padding: clamp(72px, 10vw, 120px) 0; }
 .section-tight { padding-top: clamp(40px, 6vw, 64px); }
 .section-alt { background: var(--surface); border-block: 1px solid rgba(255, 255, 255, .04); }
-.section-head { max-width: 640px; margin-bottom: 44px; }
+.section-head { max-width: 720px; margin-bottom: 44px; }
 .section-sub { color: var(--muted); margin: 16px 0 0; font-size: 1.1rem; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
 .split h2.display { margin-bottom: 18px; }
