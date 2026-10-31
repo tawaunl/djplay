@@ -515,7 +515,7 @@ def home(c: dict) -> str:
 
 <section class="section">
   <div class="wrap">
-    {section_head("What we do best", 'Two rooms. <span class="gold-text">One D.J.</span>')}
+    {section_head("What we do best", 'Two rooms. <span class="gold-text">One&nbsp;D.J.</span>')}
     <div class="feature-grid">
       <a class="feature reveal" href="weddings/">
         <p class="eyebrow">Weddings</p>
